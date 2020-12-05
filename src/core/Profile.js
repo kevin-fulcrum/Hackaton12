@@ -25,6 +25,10 @@ export const styles = StyleSheet.create({
       width: width/14,
       height: height/28,
       borderRadius: 2,
+    },
+    back:{
+      width: width/14,
+      height: height/28,
     }
   });
 
@@ -32,7 +36,17 @@ const Profile =({navigation})=>{
     return(
         <>
         <View style={styles.container}>
-        <Text>hola</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <View style={{flexDirection: 'row',fontWeight: 'bold', marginTop: 5}}> 
+                  <Image
+                    source={{
+                      uri: 'https://img.icons8.com/ultraviolet/40/000000/back.png',
+                    }}
+                    style={styles.back}> 
+                  </Image>
+                  <Text style={{color: '#f2f2f2', marginTop: 3}}>Back</Text>
+            </View>
+            </TouchableOpacity>
         </View>
         <View style={styles.containerCenter}> 
         <ScrollCard data={DpData}></ScrollCard>

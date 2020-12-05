@@ -6,6 +6,7 @@ export const DpData = [
        peso: '80',
        foto: 'https://fondosmil.com/fondo/20852.jpg',
        id: 1,
+       idPersona: 1,
     },
     {
        fecha: '15',
@@ -14,6 +15,7 @@ export const DpData = [
        peso: '58',
        foto: 'https://fondosmil.com/fondo/20852.jpg',
        id: 2,
+       idPersona: 1,
     },
     {
         fecha: '15',
@@ -22,6 +24,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 3,
+        idPersona: 1,
      },
      {
         fecha: '15',
@@ -30,6 +33,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 4,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -38,6 +42,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 5,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -46,6 +51,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 6,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -54,6 +60,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 7,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -62,6 +69,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 8,
+        idPersona: 1,
      },
      {
         fecha: '15',
@@ -70,6 +78,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 9,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -78,6 +87,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 10,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -86,6 +96,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 11,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -94,6 +105,7 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 12,
+        idPersona: 2,
      },
      {
         fecha: '15',
@@ -102,5 +114,6 @@ export const DpData = [
         peso: '58',
         foto: 'https://fondosmil.com/fondo/20852.jpg',
         id: 13,
+        idPersona: 2,
      },
   ];
