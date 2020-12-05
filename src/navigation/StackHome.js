@@ -5,6 +5,7 @@ import Profile from '../core/Profile'
 import Principal from '../core/Principal'
 import Splash from '../screens/splash/Splash'
 import AgregarTrat from '../core/AgregarTrat'
+import Welcome from '../core/Welcome'
 
 const Stack = createStackNavigator();
 const forFade =({current})=>({
@@ -36,6 +37,11 @@ const StackHome = () =>{
             <Stack.Screen
             name="AgregarTrat"
             component={AgregarTrat}
+            options={{header: () => null}}
+            />
+            <Stack.Screen
+            name="Welcome"
+            component={Welcome}
             options={{header: () => null}}
             />
             </Stack.Navigator>

@@ -40,7 +40,7 @@ const Splash = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentContainer}>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>
+        <TouchableOpacity onPress={()=>{navigation.navigate('Welcome')}}>
         <Animated.Image
           style={[styles.image, {opacity: fadeAnim}]}
           source={require('../../../assets/images/login_cnsr.png')}
