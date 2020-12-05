@@ -1,5 +1,5 @@
-import React from 'react'
-import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} from 'react-native'
 import ScrollCard from '../components/card/ScrollCard';
 import {DpData} from '../resource/data/DpData'
 
@@ -33,7 +33,43 @@ export const styles = StyleSheet.create({
     }
   });
 
-const AgregarTrat =({navigation})=>{
+const AgregarTrat =({navigation, route})=>{
+
+  const [fecha, setFecha] = useState('');
+  const [ultra, setUltra] = useState('');
+  const [presion, setPresion] = useState('');
+  const [peso, setPeso] = useState('');
+  const [foto, setFoto] = useState('https://fondosmil.com/fondo/20852.jpg');
+  const [id, setId] = useState(route.params.length+1);
+  //console.warn(id);
+  const [datos, setDatos] = useState({
+      fecha: "",
+      ultra: "",
+      presion: "",
+      peso: "",
+      foto: "",
+      id: "",
+  })
+  
+  useEffect(()=>{
+      setDatos({
+          fecha: fecha,
+          ultra: ultra,
+          presion: presion,
+          peso: peso,
+          foto: foto,
+          id: id,
+      })
+      
+
+  },[fecha, ultra, presion, peso, foto, id])
+
+  const guardar = () =>{
+      route.params.push(datos)
+      navigation.navigate('Profile', route.params)
+      console.warn(route.params)
+  }
+
     return(
         <>
         <View style={styles.container}>
@@ -50,7 +86,17 @@ const AgregarTrat =({navigation})=>{
             </TouchableOpacity>
         </View>
         <View style={styles.containerCenter}> 
-        <Text>agregar</Text>
+        <Text>fecha</Text>
+        <TextInput onChangeText={(e) => {setFecha(e)}} ></TextInput>
+        <Text>ultra</Text>
+        <TextInput onChangeText={(e) => {setUltra(e)}} ></TextInput>
+        <Text>presion</Text>
+        <TextInput onChangeText={(e) => {setPresion(e)}} ></TextInput>
+        <Text>peso</Text>
+        <TextInput onChangeText={(e) => {setPeso(e)}} ></TextInput>
+        <TouchableOpacity onPress = {guardar}>
+            <Text style={{fontSize: 20}}>Guardar </Text>
+        </TouchableOpacity>
         </View>
         <View style={styles.containerEnd}>
             <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>
