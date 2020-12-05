@@ -1,5 +1,6 @@
 import React from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
+import {DpData} from '../resource/data/DpData'
 
 const {width, height} = Dimensions.get('window');
 
@@ -66,7 +67,6 @@ export const styles = StyleSheet.create({
     }
   });
 const Profile =({navigation})=>{
-
   return(
         <>
         <View style={{flex: 1}}>
@@ -89,7 +89,7 @@ const Profile =({navigation})=>{
         </View>
         <View style={styles.containerCenter}> 
                 <View>
-                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat')}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', DpData)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
@@ -113,7 +113,7 @@ const Profile =({navigation})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', DpData)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image

@@ -1,7 +1,6 @@
 import React from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
 import ScrollCard from '../components/card/ScrollCard';
-import {DpData} from '../resource/data/DpData'
 
 const {width, height} = Dimensions.get('window');
 
@@ -33,7 +32,7 @@ export const styles = StyleSheet.create({
     }
   });
 
-const Profile =({navigation})=>{
+const Profile =({navigation, route})=>{
     return(
         <>
         <View style={styles.container}>
@@ -50,7 +49,7 @@ const Profile =({navigation})=>{
             </TouchableOpacity>
         </View>
         <View style={styles.containerCenter}> 
-        <ScrollCard data={DpData}></ScrollCard>
+        <ScrollCard data={route.params}></ScrollCard>
         </View>
         <View style={styles.containerEnd}>
             <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>
