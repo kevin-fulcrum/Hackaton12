@@ -1,7 +1,9 @@
 import React from 'react'
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
 import ScrollCard from '../components/card/ScrollCard';
 import {DpData} from '../resource/data/DpData'
+
+const {width, height} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
@@ -15,6 +17,14 @@ export const styles = StyleSheet.create({
     containerEnd: {
       flex: 0.05,
       flexDirection: 'row',
+      backgroundColor: '#13b4ec',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    home:{
+      width: width/14,
+      height: height/28,
+      borderRadius: 2,
     }
   });
 
@@ -28,10 +38,16 @@ const Profile =()=>{
         <ScrollCard data={DpData}></ScrollCard>
         </View>
         <View style={styles.containerEnd}>
-          <View style={{borderTopRightRadius: 30, backgroundColor: '#13b4ec', flex: 0.5}}>
-          </View>
-          <View style={{borderTopLeftRadius: 30, backgroundColor: '#13b4ec', flex: 0.5}}>
-          </View>
+            <TouchableOpacity onPress={()=>{console.warn('home')}}>
+            <View>
+                  <Image
+                    source={{
+                      uri: 'https://img.icons8.com/ultraviolet/40/000000/home--v1.png',
+                    }}
+                    style={styles.home}> 
+                  </Image>
+            </View>
+            </TouchableOpacity>
         </View>
         </>
     )

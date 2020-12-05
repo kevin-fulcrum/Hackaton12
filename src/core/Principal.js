@@ -50,8 +50,8 @@ export const styles = StyleSheet.create({
       height: height/11,
     },
     home:{
-      width: width/12,
-      height: height/23,
+      width: width/14,
+      height: height/28,
       borderRadius: 2,
     }
   });
