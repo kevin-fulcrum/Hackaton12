@@ -104,7 +104,7 @@ const Profile =({navigation})=>{
                 </View>
         </View>
         <View style={styles.containerEnd}>
-            <TouchableOpacity onPress={()=>{console.warn('home')}}>
+            <TouchableOpacity onPress={()=>{console.warn('Ya se encuentra en Home')}}>
             <View>
                   <Image
                     source={{
@@ -119,5 +119,4 @@ const Profile =({navigation})=>{
         </>
     )
 };
-
 export default Profile;

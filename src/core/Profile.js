@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     }
   });
 
-const Profile =()=>{
+const Profile =({navigation})=>{
     return(
         <>
         <View style={styles.container}>
@@ -38,7 +38,7 @@ const Profile =()=>{
         <ScrollCard data={DpData}></ScrollCard>
         </View>
         <View style={styles.containerEnd}>
-            <TouchableOpacity onPress={()=>{console.warn('home')}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>
             <View>
                   <Image
                     source={{
