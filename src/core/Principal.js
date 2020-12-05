@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       justifyContent: 'center',
-      flex: 0.35,
+      flex: 0.33,
       backgroundColor: '#13b4ec',
     },
     containerCenter: {  
@@ -17,11 +17,12 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     containerEnd: {
-      flex: 0.05,
+      flex: 0.07,
       flexDirection: 'row',
-      backgroundColor: '#13b4ec',
+      backgroundColor: '#f2f2f2',
       alignItems: 'center',
       justifyContent: 'center',
+      borderWidth: 0.15
     },
     imagen: {
       width: width/5,
@@ -46,8 +47,17 @@ export const styles = StyleSheet.create({
       height: height/6,
     },
     iconos:{
-      width: width/6,
-      height: height/11,
+      width: width/15,
+      height: height/30,
+      marginVertical: 20,
+      marginHorizontal: 20
+    },
+    iconosEnd: {
+      width: width/15,
+      height: height/30,
+      marginVertical: 30,
+      marginLeft: 30,
+      marginRight: 10
     },
     home:{
       width: width/14,
@@ -79,26 +89,52 @@ const Profile =({navigation})=>{
         </View>
         <View style={styles.containerCenter}> 
                 <View>
-                  <TouchableOpacity style={{marginBottom: 40}} onPress={e=>(console.warn('Agregar datos'))}>
-                  <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat')}}>
+                  <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
+                    <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
                     source={{
-                      uri: 'https://img.icons8.com/color/48/000000/add-image.png',
+                      uri: 'https://img.icons8.com/ultraviolet/40/000000/plus.png',
                     }}
                     style={styles.iconos}> 
                     </Image>
-                    <Text style={{marginTop: 20}}>AGREGAR</Text>
+                    </View>
+                    <View style={{flexDirection: "column"}}>
+                    <Text style={{marginTop: 20, marginHorizontal: 20}}>AGREGAR</Text>
+                    <Text style={{marginTop: 5, marginHorizontal: 20}}>Tratamiento    </Text>
+                    </View>
+                    <View>
+                      <Image
+                      source={{
+                        uri: 'https://img.icons8.com/ultraviolet/40/000000/circled-chevron-right.png',
+                      }}
+                      style={styles.iconosEnd}> 
+                      </Image>
+                    </View>
                   </View>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
-                  <View style={{flexDirection: 'row'}}>
+                  <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
+                    <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
                     source={{
-                      uri: 'https://img.icons8.com/fluent/48/000000/add-list.png',
+                      uri: 'https://img.icons8.com/dusk/64/000000/transaction-list.png',
                     }}
                     style={styles.iconos}> 
                     </Image>
-                    <Text style={{marginTop: 20}}>VER DATOS</Text>
+                    </View>
+                    <View style={{flexDirection: "column"}}>
+                    <Text style={{marginTop: 20, marginHorizontal: 20}}>LISTAR         </Text>
+                    <Text style={{marginTop: 5, marginHorizontal: 20}}>13 Resultados</Text>
+                    </View>
+                    <View>
+                      <Image
+                      source={{
+                        uri: 'https://img.icons8.com/ultraviolet/40/000000/circled-chevron-right.png',
+                      }}
+                      style={styles.iconosEnd}> 
+                      </Image>
+                    </View>
                   </View>
                   </TouchableOpacity>
                 </View>

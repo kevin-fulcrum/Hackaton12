@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     }
   });
 
-const Profile =({navigation})=>{
+const AgregarTrat =({navigation})=>{
     return(
         <>
         <View style={styles.container}>
@@ -50,7 +50,7 @@ const Profile =({navigation})=>{
             </TouchableOpacity>
         </View>
         <View style={styles.containerCenter}> 
-        <ScrollCard data={DpData}></ScrollCard>
+        <Text>agregar</Text>
         </View>
         <View style={styles.containerEnd}>
             <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>
@@ -68,4 +68,4 @@ const Profile =({navigation})=>{
     )
 };
 
-export default Profile;
+export default AgregarTrat;

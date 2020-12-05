@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import Profile from '../core/Profile'
 import Principal from '../core/Principal'
 import Splash from '../screens/splash/Splash'
+import AgregarTrat from '../core/AgregarTrat'
 
 const Stack = createStackNavigator();
 const forFade =({current})=>({
@@ -30,6 +31,11 @@ const StackHome = () =>{
             <Stack.Screen
             name="Splash"
             component={Splash}
+            options={{header: () => null}}
+            />
+            <Stack.Screen
+            name="AgregarTrat"
+            component={AgregarTrat}
             options={{header: () => null}}
             />
             </Stack.Navigator>
