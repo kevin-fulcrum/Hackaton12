@@ -1,6 +1,6 @@
 export const DpData = [
     {
-       fecha: '15',
+       fecha: '17    Nov',
        ultra: '100',
        presion: '80/70',
        peso: '80',
@@ -9,7 +9,7 @@ export const DpData = [
        idPersona: 1,
     },
     {
-       fecha: '15',
+       fecha: '16    Nov',
        ultra: '300',
        presion: '80/75',
        peso: '58',
@@ -18,7 +18,7 @@ export const DpData = [
        idPersona: 1,
     },
     {
-        fecha: '15',
+        fecha: '15    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -27,7 +27,7 @@ export const DpData = [
         idPersona: 1,
      },
      {
-        fecha: '15',
+        fecha: '14    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -36,7 +36,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '13    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -45,7 +45,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '12    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -54,7 +54,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '11    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -63,7 +63,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '10    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -72,7 +72,7 @@ export const DpData = [
         idPersona: 1,
      },
      {
-        fecha: '15',
+        fecha: '5    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -81,7 +81,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '4    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -90,7 +90,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '3    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -99,7 +99,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '2    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
@@ -108,7 +108,7 @@ export const DpData = [
         idPersona: 2,
      },
      {
-        fecha: '15',
+        fecha: '1    Nov',
         ultra: '300',
         presion: '80/75',
         peso: '58',
