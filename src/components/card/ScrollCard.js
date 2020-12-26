@@ -22,7 +22,7 @@ const ScrollCard = ({data}) => {
   const scrollX = new Animated.Value(0);
   if (data && data.length) {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, marginTop: -160}}>
         <FlatList
           data={data}
           keyExtractor={(item, index) => 'key' + index}

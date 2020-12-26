@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} from 'react-native'
-import ScrollCard from '../components/card/ScrollCard';
-import {DpData} from '../resource/data/DpData'
+import axios from 'axios'
+import {paciente1} from './Welcome'
+import {USERNAME,PASSWORD} from 'react-native-dotenv'
 
 const {width, height} = Dimensions.get('window');
 
@@ -13,6 +14,8 @@ export const styles = StyleSheet.create({
     containerCenter: {  
       flex: 0.85,
       backgroundColor: '#f2f2f2',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     containerEnd: {
       flex: 0.07,
@@ -30,44 +33,80 @@ export const styles = StyleSheet.create({
     back:{
       width: width/14,
       height: height/28,
+    },
+    textInput: {
+      borderWidth: 1,
+      borderRadius: 15,
+      width: width/1.5,
+      textAlign: 'center',
+      marginVertical: 10,
     }
   });
 
-const AgregarTrat =({navigation, route})=>{
+const AgregarTrat =({navigation})=>{
 
-  const [fecha, setFecha] = useState('');
-  const [ultra, setUltra] = useState('');
-  const [presion, setPresion] = useState('');
+  const [paciente, setPaciente] = useState('');
   const [peso, setPeso] = useState('');
-  const [foto, setFoto] = useState('https://fondosmil.com/fondo/20852.jpg');
-  const [id, setId] = useState(route.params.length+1);
+  const [pres_art, setPres_art] = useState('');
+  const [ultrafil, setUltrafil] = useState('');
+
+  console.warn(useContext(paciente1))
   //console.warn(id);
   const [datos, setDatos] = useState({
-      fecha: "",
-      ultra: "",
-      presion: "",
+      paciente: "",
       peso: "",
-      foto: "",
-      id: "",
+      pres_art: "",
+      ultrafil: "",
+      datosPaciente: {},
   })
   
+  const idPaciente='http://192.168.1.37:8000/pacientes/'
+
   useEffect(()=>{
       setDatos({
-          fecha: fecha,
-          ultra: ultra,
-          presion: presion,
+          paciente: idPaciente+paciente+'/',
           peso: peso,
-          foto: foto,
-          id: id,
+          pres_art: pres_art,
+          ultrafil: ultrafil,
+          datosPaciente: {},
       })
       
 
-  },[fecha, ultra, presion, peso, foto, id])
+  },[paciente, peso, pres_art, ultrafil])
 
   const guardar = () =>{
-      route.params.push(datos)
-      navigation.navigate('Profile', route.params)
-      console.warn(route.params)
+      //navigation.navigate('ApiEnvio', datos)
+      axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
+        "username": USERNAME,
+        "password": PASSWORD
+      })
+      .then(
+      (response)=>{
+        const auth="Bearer "+response.data.access
+        axios.post('https://nameless-plains-78392.herokuapp.com/dialisis_peritoneal/',
+        datos,
+        {
+          headers:{'Authorization': auth}
+        }
+        )
+        .then(
+          (res)=>{
+            console.warn('exito')
+            navigation.navigate('Principal')
+          }
+        )
+        .catch(
+          (res)=>{
+            console.warn('Error:' ,res)
+          }
+        )
+      }
+      )
+      .catch(
+        (response)=>{
+          console.warn('Error:' ,response)
+        }
+      )
   }
 
     return(
@@ -86,16 +125,13 @@ const AgregarTrat =({navigation, route})=>{
             </TouchableOpacity>
         </View>
         <View style={styles.containerCenter}> 
-        <Text>fecha</Text>
-        <TextInput onChangeText={(e) => {setFecha(e)}} ></TextInput>
-        <Text>ultra</Text>
-        <TextInput onChangeText={(e) => {setUltra(e)}} ></TextInput>
-        <Text>presion</Text>
-        <TextInput onChangeText={(e) => {setPresion(e)}} ></TextInput>
-        <Text>peso</Text>
-        <TextInput onChangeText={(e) => {setPeso(e)}} ></TextInput>
+        <Text>Ingrese los Siguientes Datos</Text>
+        <TextInput style={styles.textInput} placeholder='Ingrese id Paciente' onChangeText={(e) => {setPaciente(e)}} ></TextInput>
+        <TextInput style={styles.textInput} keyboardType='number-pad' placeholder='Ingrese su Peso' onChangeText={(e) => {setPeso(e)}} ></TextInput>
+        <TextInput style={styles.textInput} keyboardType='decimal-pad' placeholder='Ingrese su Presión Arterial' onChangeText={(e) => {setPres_art(e)}} ></TextInput>
+        <TextInput style={styles.textInput} keyboardType='number-pad' placeholder='Ingrese su Ultrafiltración' onChangeText={(e) => {setUltrafil(e)}} ></TextInput>
         <TouchableOpacity onPress = {guardar}>
-            <Text style={{fontSize: 20}}>Guardar </Text>
+            <Text style={{fontSize: 20}}>Guardar</Text>
         </TouchableOpacity>
         </View>
         <View style={styles.containerEnd}>

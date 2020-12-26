@@ -1,119 +1,43 @@
-export const DpData = [
-    {
-       fecha: '17    Nov',
-       ultra: '100',
-       presion: '80/70',
-       peso: '80',
-       foto: 'https://fondosmil.com/fondo/20852.jpg',
-       id: 1,
-       idPersona: 1,
-    },
-    {
-       fecha: '16    Nov',
-       ultra: '300',
-       presion: '80/75',
-       peso: '58',
-       foto: 'https://fondosmil.com/fondo/20852.jpg',
-       id: 2,
-       idPersona: 1,
-    },
-    {
-        fecha: '15    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 3,
-        idPersona: 1,
-     },
-     {
-        fecha: '14    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 4,
-        idPersona: 2,
-     },
-     {
-        fecha: '13    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 5,
-        idPersona: 2,
-     },
-     {
-        fecha: '12    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 6,
-        idPersona: 2,
-     },
-     {
-        fecha: '11    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 7,
-        idPersona: 2,
-     },
-     {
-        fecha: '10    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 8,
-        idPersona: 1,
-     },
-     {
-        fecha: '5    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 9,
-        idPersona: 2,
-     },
-     {
-        fecha: '4    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 10,
-        idPersona: 2,
-     },
-     {
-        fecha: '3    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 11,
-        idPersona: 2,
-     },
-     {
-        fecha: '2    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 12,
-        idPersona: 2,
-     },
-     {
-        fecha: '1    Nov',
-        ultra: '300',
-        presion: '80/75',
-        peso: '58',
-        foto: 'https://fondosmil.com/fondo/20852.jpg',
-        id: 13,
-        idPersona: 2,
-     },
-  ];
+import {useEffect,useState} from 'react'
+import axios from 'axios'
+
+
+const DpData=()=>{
+
+   const [data, setData]=useState();
+
+   axios.post('http://192.168.1.37:8000/api/token/',{
+        "username": "Bryan",
+        "password": "123456"
+      })
+      .then(
+      (response)=>{
+        console.warn(response.data.access)
+        const auth="Bearer "+response.data.access
+        axios.get('http://192.168.1.37:8000/dialisis_peritoneal/',
+        {
+          headers:{'Authorization': auth}
+        }
+        )
+        .then(
+          (res)=>{
+            //console.warn('exito')
+            //setData(res)
+          }
+        )
+        .catch(
+          (res)=>{
+            console.warn('Error:', res)
+          }
+        )
+      }
+      )
+      .catch(
+        (response)=>{
+         response===404 ? console.warn('lo sientimos no tenemos servicios') :console.warn('Error:' ,response)
+        }
+      )   
+}
+
+
+export default DpData;

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
-import {DpData} from '../resource/data/DpData'
+//import {DpData} from '../resource/data/DpData'
+import {USERNAME,PASSWORD} from 'react-native-dotenv'
 
 const {width, height} = Dimensions.get('window');
 
@@ -67,6 +68,9 @@ export const styles = StyleSheet.create({
     }
   });
 const Profile =({navigation})=>{
+  
+  const [data, setData]=useState(true);
+
   return(
         <>
         <View style={{flex: 1}}>
@@ -89,7 +93,7 @@ const Profile =({navigation})=>{
         </View>
         <View style={styles.containerCenter}> 
                 <View>
-                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', DpData)}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat')}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
@@ -113,7 +117,7 @@ const Profile =({navigation})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', DpData)}}>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', !data)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
