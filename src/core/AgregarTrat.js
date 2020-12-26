@@ -1,8 +1,7 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} from 'react-native'
 import axios from 'axios'
-import {paciente1} from './Welcome'
-import {USERNAME,PASSWORD} from 'react-native-dotenv'
+import configiguracion from "../../config"
 
 const {width, height} = Dimensions.get('window');
 
@@ -50,7 +49,6 @@ const AgregarTrat =({navigation})=>{
   const [pres_art, setPres_art] = useState('');
   const [ultrafil, setUltrafil] = useState('');
 
-  console.warn(useContext(paciente1))
   //console.warn(id);
   const [datos, setDatos] = useState({
       paciente: "",
@@ -77,8 +75,8 @@ const AgregarTrat =({navigation})=>{
   const guardar = () =>{
       //navigation.navigate('ApiEnvio', datos)
       axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
-        "username": USERNAME,
-        "password": PASSWORD
+        "username": configiguracion.USUARIO,
+        "password": configiguracion.CLAVE
       })
       .then(
       (response)=>{

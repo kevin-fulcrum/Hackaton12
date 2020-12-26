@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react
 import ScrollCard from '../components/card/ScrollCard';
 import axios from 'axios'
 import SkeletonShimer from '../components/skeleton/SkeletonShimer'
-import {USERNAME,PASSWORD} from 'react-native-dotenv'
+import configiguracion from "../../config"
 
 const {width, height} = Dimensions.get('window');
 
@@ -38,19 +38,18 @@ export const styles = StyleSheet.create({
   
 
 const Profile =({navigation, route})=>{
-
+  console.warn(route.params)
   const [data, setData]=useState({});
   const [visible, setVisible]=useState(false);
-  
   useEffect(()=>{
     axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
-        "username": USERNAME,
-        "password": PASSWORD
+        "username": configiguracion.USUARIO,
+        "password": configiguracion.CLAVE
       })
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.get('https://nameless-plains-78392.herokuapp.com/dialisis_peritoneal?search=2',
+        axios.get('https://nameless-plains-78392.herokuapp.com/dialisis_peritoneal?search='+route.params,
         {
           headers:{'Authorization': auth}
         }
@@ -74,7 +73,7 @@ const Profile =({navigation, route})=>{
           response===404 ? console.warn('lo sientimos no tenemos servicios') :console.warn('Error:' ,response)
         }
       )  
-  },[route.params])
+  },[])
 
     return(
         <>

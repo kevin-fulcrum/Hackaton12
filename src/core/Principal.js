@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
 //import {DpData} from '../resource/data/DpData'
-import {USERNAME,PASSWORD} from 'react-native-dotenv'
+import axios from 'axios'
+import configiguracion from "../../config"
 
 const {width, height} = Dimensions.get('window');
 
@@ -67,10 +68,44 @@ export const styles = StyleSheet.create({
       borderRadius: 2,
     }
   });
-const Profile =({navigation})=>{
+const Profile =({navigation, route})=>{
+  console.warn('roue', route.params[54])
+  const [data, setData]=useState({});
+  const [visible, setVisible]=useState(false);
   
-  const [data, setData]=useState(true);
-
+  useEffect(()=>{
+    axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
+        "username": configiguracion.USUARIO,
+        "password": configiguracion.CLAVE
+      })
+      .then(
+      (response)=>{
+        const auth="Bearer "+response.data.access
+        axios.get(route.params,
+        {
+          headers:{'Authorization': auth}
+        }
+        )
+        .then(
+          (res)=>{
+            console.warn('exito', res.data)
+            setData(res.data)
+            setVisible(true)
+          }
+        )
+        .catch(
+          (res)=>{
+            console.warn('Error:', res)
+          }
+        )
+      }
+      )
+      .catch(
+        (response)=>{
+          response===404 ? console.warn('lo sientimos no tenemos servicios') :console.warn('Error:' ,response)
+        }
+      )  
+  },[])
   return(
         <>
         <View style={{flex: 1}}>
@@ -85,7 +120,7 @@ const Profile =({navigation})=>{
                 </Image>
               </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
-                  <Text style={styles.textoPerfil}>George Williams</Text>
+                  <Text style={styles.textoPerfil}>{data.nombres}</Text>
                   <Text style={styles.textoPerfilSEcundario}>Paciente Dialisis Peritoneal</Text>
                   <Text style={styles.textoPerfilSEcundario}>Edad: 57 años</Text>
                 </View>  
@@ -117,7 +152,7 @@ const Profile =({navigation})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', !data)}}>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', route.params[54])}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image

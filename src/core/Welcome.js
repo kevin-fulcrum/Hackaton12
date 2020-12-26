@@ -1,7 +1,8 @@
 import React, {useState, createContext} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} from 'react-native'
 import axios from 'axios'
-import {USERNAME,PASSWORD} from 'react-native-dotenv'
+import { set } from 'react-native-reanimated';
+import configiguracion from "../../config"
 
 const {width, height} = Dimensions.get('window');
 
@@ -28,28 +29,29 @@ export const styles = StyleSheet.create({
   });
   
 
-  export const paciente1 = createContext({color: 'rojo'});
+  //export const paciente1 = createContext({color: 'rojo'});
 
   const Welcome =({navigation})=>{
-  const [valor , setValor] = useState({});  
+  const [valor , setValor] = useState({});
 
   const enviar=()=>{
     axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
-        "username": USERNAME,
-        "password": PASSWORD
+      "username": configiguracion.USUARIO,
+      "password": configiguracion.CLAVE
       })
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.get('https://nameless-plains-78392.herokuapp.com/usuarios?search=72412676',
+        axios.get('https://nameless-plains-78392.herokuapp.com/usuarios?search='+valor,
         {
           headers:{'Authorization': auth}
         }
         )
         .then(
           (res)=>{
-            console.warn('exito', res.data[0].paciente)
-            navigation.navigate('Principal')
+            console.warn('welcome', res.data[0].paciente)
+            navigation.navigate('Principal', res.data[0].paciente)
+            
           }
         )
         .catch(
@@ -64,8 +66,9 @@ export const styles = StyleSheet.create({
           console.warn('Error:' ,response)
         }
       )
+      setValor('')
   }
-
+  
   return(
         <>
         <View style={styles.container}>
@@ -77,7 +80,7 @@ export const styles = StyleSheet.create({
             style={styles.imagen}> 
             </Image>    
             </TouchableOpacity>
-            <TextInput style={styles.textInput} onChangeText={(e)=>{setValor(e)}} placeholder='Ingrese Documento de Identidad' keyboardType='number-pad' maxLength={10} ></TextInput>
+            <TextInput style={styles.textInput} defaultValue={valor} onChangeText={(e)=>{setValor(e)}} placeholder='Ingrese Documento de Identidad' keyboardType='number-pad' maxLength={10} ></TextInput>
         </View>
         </>
     )
