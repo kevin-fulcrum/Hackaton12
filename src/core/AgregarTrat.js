@@ -42,8 +42,7 @@ export const styles = StyleSheet.create({
     }
   });
 
-const AgregarTrat =({navigation})=>{
-
+const AgregarTrat =({navigation,route})=>{
   const [paciente, setPaciente] = useState('');
   const [peso, setPeso] = useState('');
   const [pres_art, setPres_art] = useState('');
@@ -58,11 +57,9 @@ const AgregarTrat =({navigation})=>{
       datosPaciente: {},
   })
   
-  const idPaciente='http://192.168.1.37:8000/pacientes/'
-
   useEffect(()=>{
       setDatos({
-          paciente: idPaciente+paciente+'/',
+          paciente: route.params,
           peso: peso,
           pres_art: pres_art,
           ultrafil: ultrafil,
@@ -124,7 +121,6 @@ const AgregarTrat =({navigation})=>{
         </View>
         <View style={styles.containerCenter}> 
         <Text>Ingrese los Siguientes Datos</Text>
-        <TextInput style={styles.textInput} placeholder='Ingrese id Paciente' onChangeText={(e) => {setPaciente(e)}} ></TextInput>
         <TextInput style={styles.textInput} keyboardType='number-pad' placeholder='Ingrese su Peso' onChangeText={(e) => {setPeso(e)}} ></TextInput>
         <TextInput style={styles.textInput} keyboardType='decimal-pad' placeholder='Ingrese su Presión Arterial' onChangeText={(e) => {setPres_art(e)}} ></TextInput>
         <TextInput style={styles.textInput} keyboardType='number-pad' placeholder='Ingrese su Ultrafiltración' onChangeText={(e) => {setUltrafil(e)}} ></TextInput>
@@ -145,7 +141,7 @@ const AgregarTrat =({navigation})=>{
             </TouchableOpacity>
         </View>
         </>
-    )
+    ) 
 };
 
 export default AgregarTrat;

@@ -116,9 +116,7 @@ const Profile =({navigation, route})=>{
         <View style={{marginVertical: 10, marginHorizontal: 10}}>
         <SkeletonShimer visible={visible}/>
         </View>
-        
         <ScrollCard data={data}></ScrollCard>
-        
         </View>
         <View style={styles.containerEnd}>
             <TouchableOpacity onPress={()=>{navigation.navigate('Principal')}}>

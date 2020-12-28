@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
     },
     iconosEnd: {
       width: width/15,
-      height: height/30,
+      height: height/27,
       marginVertical: 30,
       marginLeft: 30,
       marginRight: 10
@@ -112,23 +112,20 @@ const Profile =({navigation, route})=>{
         <View style={styles.container}>
           <View style={styles.datosPersonales}>
               <TouchableOpacity onPress={e=>(console.warn('foto'))}>
-                <Image
-                source={{
-                  uri: 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',
-                }}
-                style={styles.imagen}> 
-                </Image>
+              <Image
+                style={styles.imagen}
+                source={require('../resource/static/images/icons/logo.png')}
+            />
               </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
                   <Text style={styles.textoPerfil}>{data.nombres}</Text>
                   <Text style={styles.textoPerfilSEcundario}>Paciente Dialisis Peritoneal</Text>
-                  <Text style={styles.textoPerfilSEcundario}>Edad: 57 años</Text>
                 </View>  
           </View>
         </View>
         <View style={styles.containerCenter}> 
                 <View>
-                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat')}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', route.params)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
@@ -164,7 +161,7 @@ const Profile =({navigation, route})=>{
                     </View>
                     <View style={{flexDirection: "column"}}>
                     <Text style={{marginTop: 20, marginHorizontal: 20}}>LISTAR         </Text>
-                    <Text style={{marginTop: 5, marginHorizontal: 20}}>13 Resultados</Text>
+                    <Text style={{marginTop: 5, marginHorizontal: 20}}>Resultados     </Text>
                     </View>
                     <View>
                       <Image

@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} 
 import axios from 'axios'
 import { set } from 'react-native-reanimated';
 import configiguracion from "../../config"
+import ModalMensajes from '../components/modal/ModalMensajes';
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,14 +18,21 @@ export const styles = StyleSheet.create({
         width: width/1.5,
         height: height/2,
     },
+    imagenEnviar: {
+      width: width/10,
+      height: height/18,
+      marginTop: 2
+  },
     textInput: {
         borderWidth: 1,
         borderColor: '#2da4f1',
         borderRadius: 10,
+        marginRight: 5,
         color: '#315f85',
-        marginHorizontal: 50,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
   });
   
@@ -33,6 +41,7 @@ export const styles = StyleSheet.create({
 
   const Welcome =({navigation})=>{
   const [valor , setValor] = useState({});
+  const [visible, setVisible] = useState(false)
 
   const enviar=()=>{
     axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
@@ -49,9 +58,13 @@ export const styles = StyleSheet.create({
         )
         .then(
           (res)=>{
+            console.warn( res.data.length)
+            if (res.data.length===0){
+              setVisible(true)
+            }else{
             console.warn('welcome', res.data[0].paciente)
             navigation.navigate('Principal', res.data[0].paciente)
-            
+            }
           }
         )
         .catch(
@@ -66,21 +79,27 @@ export const styles = StyleSheet.create({
           console.warn('Error:' ,response)
         }
       )
-      setValor('')
   }
   
   return(
         <>
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=>{enviar()}}>
+        <ModalMensajes visible={visible} setVisible={setVisible}></ModalMensajes>
             <Image
-            source={{
-            uri: 'https://us.123rf.com/450wm/3dmask/3dmask1710/3dmask171000033/88271730-doctor-3d-que-se%C3%B1ala-a-la-pared-vac%C3%ADa-ilustraci%C3%B3n-con-el-fondo-blanco-aislado.jpg?ver=6',
-            }}
-            style={styles.imagen}> 
-            </Image>    
+                source={{
+                uri: 'https://us.123rf.com/450wm/3dmask/3dmask1710/3dmask171000033/88271730-doctor-3d-que-se%C3%B1ala-a-la-pared-vac%C3%ADa-ilustraci%C3%B3n-con-el-fondo-blanco-aislado.jpg?ver=6',
+                }}
+                style={styles.imagen}> 
+            </Image>
+            <View style={{flexDirection: 'row'}}>   
+            <TextInput style={styles.textInput} onChangeText={(e)=>{setValor(e)}} placeholder='Ingrese Documento de Identidad' keyboardType='number-pad' maxLength={10} ></TextInput>
+            <TouchableOpacity onPress={enviar} >
+            <Image
+                style={styles.imagenEnviar}
+                source={require('../resource/static/images/icons/arrow.png')}
+            />
             </TouchableOpacity>
-            <TextInput style={styles.textInput} defaultValue={valor} onChangeText={(e)=>{setValor(e)}} placeholder='Ingrese Documento de Identidad' keyboardType='number-pad' maxLength={10} ></TextInput>
+            </View> 
         </View>
         </>
     )

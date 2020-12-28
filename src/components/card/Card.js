@@ -69,7 +69,7 @@ const Card =({item})=>{
             <TouchableOpacity style={styles.datosDP} onPress={(e)=>console.warn('datos')}>
             <View style={styles.datoscard}>
             <Text style={{marginVertical: 5}}>Ultra Filtracion: {item.ultrafil} ml/h</Text>
-            <Text style={{marginVertical: 5}}> Presion Arterial: {item.pres_art}</Text>
+            <Text style={{marginVertical: 5}}>Presion Arterial: {item.pres_art}</Text>
             <Text style={{marginVertical: 5}}>Peso: {item.peso} kg</Text>
             </View>
             <View>
