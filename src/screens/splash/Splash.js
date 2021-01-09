@@ -1,7 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import {
   SafeAreaView,
-  Image,
   Text,
   View,
   StyleSheet,
@@ -17,30 +16,33 @@ const Splash = ({navigation}) => {
   useEffect(() => {
     Animated.sequence([
       Animated.timing(moveAnim, {
-        duration: 1000,
+        duration: 1500,
         toValue: Dimensions.get('window').width / 1.6,
         delay: 0,
         useNativeDriver: false,
       }),
       Animated.timing(moveAnim, {
-        duration: 1000,
+        duration: 1500,
         toValue: 0,
         delay: 0,
         useNativeDriver: false,
       }),
     ]).start();
     Animated.timing(fadeAnim, {
-      duration: 1000,
+      duration: 1500,
       toValue: 1,
       delay: 1000,
       useNativeDriver: false,
     }).start();
+    
+    setTimeout(()=>{navigation.navigate('Welcome')},
+      4000)
   }, [moveAnim, fadeAnim]);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentContainer}>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Welcome')}}>
+        <TouchableOpacity>
         <Animated.Image
           style={[styles.image, {opacity: fadeAnim}]}
           source={require('../../../assets/images/login_cnsr.png')}

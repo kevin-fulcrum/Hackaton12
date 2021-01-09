@@ -28,8 +28,8 @@ export const styles = StyleSheet.create({
       borderWidth: 0.15
     },
     imagen: {
-      width: width/5,
-      height: height/9,
+      width: 80,
+      height: 80,
       borderRadius: 100,
       borderWidth: 4,
       borderColor: '#B6CAF4',
@@ -50,62 +50,26 @@ export const styles = StyleSheet.create({
       height: height/6,
     },
     iconos:{
-      width: width/15,
-      height: height/30,
+      width: 30,
+      height: 30,
       marginVertical: 20,
       marginHorizontal: 20
     },
     iconosEnd: {
-      width: width/15,
-      height: height/27,
+      width: 30,
+      height: 30,
       marginVertical: 30,
       marginLeft: 30,
       marginRight: 10
     },
     home:{
-      width: width/14,
-      height: height/28,
+      width: 30,
+      height: 30,
       borderRadius: 2,
     }
   });
 const Profile =({navigation, route})=>{
-  console.warn('roue', route.params[54])
-  const [data, setData]=useState({});
-  const [visible, setVisible]=useState(false);
-  
-  useEffect(()=>{
-    axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
-        "username": configiguracion.USUARIO,
-        "password": configiguracion.CLAVE
-      })
-      .then(
-      (response)=>{
-        const auth="Bearer "+response.data.access
-        axios.get(route.params,
-        {
-          headers:{'Authorization': auth}
-        }
-        )
-        .then(
-          (res)=>{
-            console.warn('exito', res.data)
-            setData(res.data)
-            setVisible(true)
-          }
-        )
-        .catch(
-          (res)=>{
-            console.warn('Error:', res)
-          }
-        )
-      }
-      )
-      .catch(
-        (response)=>{
-          response===404 ? console.warn('lo sientimos no tenemos servicios') :console.warn('Error:' ,response)
-        }
-      )  
-  },[])
+
   return(
         <>
         <View style={{flex: 1}}>
@@ -118,14 +82,14 @@ const Profile =({navigation, route})=>{
             />
               </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
-                  <Text style={styles.textoPerfil}>{data.nombres}</Text>
-                  <Text style={styles.textoPerfilSEcundario}>Paciente Dialisis Peritoneal</Text>
+                  <Text style={styles.textoPerfil}>{route.params.datosPaciente1.nombres}</Text>
+                  <Text style={styles.textoPerfilSEcundario}>Paciente Diálisis Peritoneal</Text>
                 </View>  
           </View>
         </View>
         <View style={styles.containerCenter}> 
                 <View>
-                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', route.params)}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', route.params.paciente)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
@@ -149,7 +113,7 @@ const Profile =({navigation, route})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', route.params[54])}}>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', route.params.paciente[54])}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image

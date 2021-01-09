@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
       borderWidth: 0.15
     },
     home:{
-      width: width/14,
-      height: height/28,
+      width: 30,
+      height: 30,
       borderRadius: 2,
     },
     back:{
@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
   
 
 const Profile =({navigation, route})=>{
-  console.warn(route.params)
   const [data, setData]=useState({});
   const [visible, setVisible]=useState(false);
   useEffect(()=>{
@@ -49,14 +48,13 @@ const Profile =({navigation, route})=>{
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.get('https://nameless-plains-78392.herokuapp.com/dialisis_peritoneal?search='+route.params,
+        axios.get('https://nameless-plains-78392.herokuapp.com/dialisis_peritoneal/?search='+route.params,
         {
-          headers:{'Authorization': auth}
+          headers:{'Authorization ': auth}
         }
         )
         .then(
           (res)=>{
-            console.warn('exito', res.data)
             setData(res.data)
             setVisible(true)
           }

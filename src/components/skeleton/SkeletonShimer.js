@@ -34,7 +34,7 @@ const SkeletonShimer = ({visible}) => {
           ref={avatarRef}
           stopAutoRun
           visible={visible}
-          height= {100}
+          height= {120}
           width= {width/3}
         />
         <View style={{ justifyContent: "flex-start",alignItems: 'center', flexDirection: "row" }}>
@@ -50,7 +50,7 @@ const SkeletonShimer = ({visible}) => {
             ref={secondLineRef}
             stopAutoRun
             visible={visible}
-            height= {100}
+            height= {120}
             width= {width/1.8}
             style={{borderRadius: 20}}
           />

@@ -1,7 +1,6 @@
 import React, {useState, createContext} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput} from 'react-native'
 import axios from 'axios'
-import { set } from 'react-native-reanimated';
 import configiguracion from "../../config"
 import ModalMensajes from '../components/modal/ModalMensajes';
 
@@ -19,8 +18,8 @@ export const styles = StyleSheet.create({
         height: height/2,
     },
     imagenEnviar: {
-      width: width/10,
-      height: height/18,
+      width: 45,
+      height: 45,
       marginTop: 2
   },
     textInput: {
@@ -33,6 +32,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         fontWeight: 'bold',
+        paddingHorizontal: 10,
     },
   });
   
@@ -42,8 +42,11 @@ export const styles = StyleSheet.create({
   const Welcome =({navigation})=>{
   const [valor , setValor] = useState({});
   const [visible, setVisible] = useState(false)
+  const [label, setLabel] = useState('')
+  const [opacado, setOpacado] = useState(1)
 
   const enviar=()=>{
+    if (valor.length>=8){
     axios.post('https://nameless-plains-78392.herokuapp.com/api/token/',{
       "username": configiguracion.USUARIO,
       "password": configiguracion.CLAVE
@@ -51,19 +54,19 @@ export const styles = StyleSheet.create({
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.get('https://nameless-plains-78392.herokuapp.com/usuarios?search='+valor,
+        axios.get('https://nameless-plains-78392.herokuapp.com/usuarios/?search='+valor,
         {
-          headers:{'Authorization': auth}
+          headers:{'Authorization ': auth}
         }
         )
         .then(
           (res)=>{
-            console.warn( res.data.length)
             if (res.data.length===0){
               setVisible(true)
+              setLabel('Usuario no Registrado')
+              setOpacado(0.5)
             }else{
-            console.warn('welcome', res.data[0].paciente)
-            navigation.navigate('Principal', res.data[0].paciente)
+              navigation.navigate('Principal', res.data[0])
             }
           }
         )
@@ -78,13 +81,17 @@ export const styles = StyleSheet.create({
         (response)=>{
           console.warn('Error:' ,response)
         }
-      )
+      )}else{
+        setVisible(true)
+        setLabel('Mínimo 8 Caracteres')
+        setOpacado(0.5)
+      }
   }
   
   return(
         <>
-        <View style={styles.container}>
-        <ModalMensajes visible={visible} setVisible={setVisible}></ModalMensajes>
+        <View opacity= {opacado}  style={styles.container}>
+        <ModalMensajes visible={visible} label={label} setVisible={setVisible} setOpacado={setOpacado}></ModalMensajes>
             <Image
                 source={{
                 uri: 'https://us.123rf.com/450wm/3dmask/3dmask1710/3dmask171000033/88271730-doctor-3d-que-se%C3%B1ala-a-la-pared-vac%C3%ADa-ilustraci%C3%B3n-con-el-fondo-blanco-aislado.jpg?ver=6',
