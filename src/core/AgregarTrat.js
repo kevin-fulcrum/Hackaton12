@@ -103,6 +103,7 @@ const AgregarTrat =({navigation,route})=>{
     }else{
       setPres_artVal(true)
     }
+    
     if((pres_art_diast>=30 && pres_art_diast<=200) || pres_art_diast==''){
       setPres_art_diastVal(false)
     }else{

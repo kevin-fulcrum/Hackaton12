@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native'
-//import {DpData} from '../resource/data/DpData'
-import axios from 'axios'
-import configiguracion from "../../config"
+import Footer from '../components/footer/Footer'
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -28,8 +27,8 @@ export const styles = StyleSheet.create({
       borderWidth: 0.15
     },
     imagen: {
-      width: 80,
-      height: 80,
+      width: width/5,
+      height: height/10,
       borderRadius: 100,
       borderWidth: 4,
       borderColor: '#B6CAF4',
@@ -38,10 +37,12 @@ export const styles = StyleSheet.create({
       color: '#F1F4FA',
       fontWeight: 'bold',
       marginLeft: 15,
+      fontSize: width/25,
     },
     textoPerfilSEcundario: {
       color: '#F1F4FA',
       marginLeft: 15,
+      fontSize: width/30,
     },
     datosPersonales: {
       alignItems: 'center',
@@ -124,8 +125,8 @@ const Profile =({navigation, route})=>{
                     </Image>
                     </View>
                     <View style={{flexDirection: "column"}}>
-                    <Text style={{marginTop: 20, marginHorizontal: 20}}>LISTAR         </Text>
-                    <Text style={{marginTop: 5, marginHorizontal: 20}}>Resultados     </Text>
+                      <Text style={{marginTop: 20, marginHorizontal: 20}}>LISTAR         </Text>
+                      <Text style={{marginTop: 5, marginHorizontal: 20}}>Resultados     </Text>
                     </View>
                     <View>
                       <Image
@@ -139,18 +140,9 @@ const Profile =({navigation, route})=>{
                   </TouchableOpacity>
                 </View>
         </View>
-        <View style={styles.containerEnd}>
-            <TouchableOpacity onPress={()=>{console.warn('Ya se encuentra en Home')}}>
-            <View>
-                  <Image
-                    source={{
-                      uri: 'https://img.icons8.com/ultraviolet/40/000000/home--v1.png',
-                    }}
-                    style={styles.home}> 
-                  </Image>
-            </View>
-            </TouchableOpacity>
-        </View>
+          <View style={styles.containerEnd}>
+              <Footer onPress={()=>{navigation.navigate('Principal')}}></Footer>
+          </View>
         </View>
         </>
     )
